@@ -1,6 +1,6 @@
 import AnimeCard, { AnimeProp } from "@/components/AnimeCard";
 import LoadMore from "../components/LoadMore";
-import { fetchAnime } from './actions';
+import { fetchAnime } from "./actions";
 
 async function Home() {
   const data = await fetchAnime(1);

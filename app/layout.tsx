@@ -3,6 +3,7 @@ import { DM_Sans } from "next/font/google";
 
 import Hero from "@/components/Hero";
 import Footer from "@/components/Footer";
+import SignInButton from "@/components/SignIn";
 
 import "./globals.css";
 
@@ -22,6 +23,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={dmSans.className}>
         <main className="max-w-7xl mx-auto bg-[#0F1117]">
+          <SignInButton />
           <Hero />
           {children}
           <Footer />
