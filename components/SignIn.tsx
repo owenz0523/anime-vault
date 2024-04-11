@@ -47,7 +47,7 @@ const SignInButton = () => {
       </button>
       {user && (
         <div className="user-display">
-          <img src="/profile.png"></img>
+          <img src={user.photoURL || "./profile.png"} alt="PFP"></img>
           <div>{user.email}</div>
         </div>
       )}

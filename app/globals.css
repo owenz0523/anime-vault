@@ -22,6 +22,7 @@ body {
   gap: 15px;
   padding-right: 5px;
   justify-content: space-between;
+  margin: 10px;
 }
 
 .sign-in-button {
@@ -35,7 +36,11 @@ body {
   height: 42.2px;
   cursor: pointer;
   outline: none;
-  border-radius: 5%;
+  border-radius: 10%;
+}
+
+.sign-in-button:hover {
+  background: linear-gradient(92deg, #ff5956 2.87%, #ee1e38 96.18%);
 }
 
 .user-display {
