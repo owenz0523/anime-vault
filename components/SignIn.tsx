@@ -20,11 +20,32 @@ const SignInButton = () => {
         setUser(currentUser);
         const newButtonText = currentUser?.email ? "Sign Out" : "Sign In";
         setButtonText(newButtonText);
+        if (currentUser && currentUser.email) {
+          console.log("Trying to send API req");
+          fetch("/api/createEmailEntry", {
+            // Adjust the endpoint path here
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ email: currentUser.email }),
+          })
+            .then((response) => {
+              if (!response.ok) {
+                throw new Error("Network response was not ok");
+              }
+              return response.json();
+            })
+            .then((data) => {
+              console.log(data);
+            });
+        }
       })
       .catch((error) => {
-        console.error("Sign-in error:", error.message);
+        console.log("Sign-in error");
         setButtonText("Sign In");
       });
+    console.log("Finished Sign In process");
   };
 
   const handleSignOut = () => {

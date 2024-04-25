@@ -22,7 +22,7 @@ body {
   gap: 15px;
   padding-right: 5px;
   justify-content: space-between;
-  margin: 10px;
+  margin: 2px;
 }
 
 .sign-in-button {
@@ -37,6 +37,7 @@ body {
   cursor: pointer;
   outline: none;
   border-radius: 10%;
+  margin-left: 10px;
 }
 
 .sign-in-button:hover {
