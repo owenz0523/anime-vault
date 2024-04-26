@@ -31,7 +31,33 @@ const variants = {
 function AnimeCard({ anime, index, email }: Prop) {
   const [isClicked, setIsClicked] = useState(false);
 
-  const toggleClick = () => setIsClicked(!isClicked);
+  const storeClick = () => {
+    console.log("Sending API request to store data");
+    if (email != "none") {
+      fetch("/api/addToWatched", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, index }),
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+          return response.json();
+        })
+        .then((data) => {
+          console.log(data);
+        })
+        .catch((error) => console.error("Failed to store the click:", error));
+    }
+  };
+
+  const toggleClick = () => {
+    setIsClicked(!isClicked);
+    storeClick();
+  };
 
   return (
     <MotionDiv

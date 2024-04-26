@@ -19,7 +19,6 @@ export default async function handler(
   try {
     // More secure to use absolute file path
     const databasePath = "../../adept/anime-vault/pages/api/database.json";
-    // Read existing data from the JSON file, if any
     let data;
     try {
       const contents = await fs.promises.readFile(databasePath, "utf-8");
@@ -46,6 +45,8 @@ export default async function handler(
     res.status(200).json({ message: "UserData object stored!" });
   } catch (error) {
     console.error("Error writing to database:", error);
-    res.status(500).json({ message: `Internal server error:` });
+    res
+      .status(500)
+      .json({ message: "Internal server error: Couldn't Write to Database" });
   }
 }
