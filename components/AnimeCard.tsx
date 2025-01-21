@@ -20,23 +20,50 @@ export interface AnimeProp {
 interface Prop {
   anime: AnimeProp;
   index: number;
+  email: string;
 }
 
 const variants = {
-  hidden: { opacity: 0},
-  visible: { opacity: 1},
-}
+  hidden: { opacity: 0 },
+  visible: { opacity: 1 },
+};
 
-function AnimeCard({ anime, index }: Prop) {
+function AnimeCard({ anime, index, email }: Prop) {
   const [isClicked, setIsClicked] = useState(false);
 
-  const toggleClick = () => setIsClicked(!isClicked);
+  const storeClick = () => {
+    console.log("Sending API request to store data");
+    if (email != "none") {
+      fetch("/api/addToWatched", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, index }),
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+          return response.json();
+        })
+        .then((data) => {
+          console.log(data);
+        })
+        .catch((error) => console.error("Failed to store the click:", error));
+    }
+  };
+
+  const toggleClick = () => {
+    setIsClicked(!isClicked);
+    storeClick();
+  };
 
   return (
-    <MotionDiv 
-      variants={variants} 
-      initial="hidden" 
-      animate="visible" 
+    <MotionDiv
+      variants={variants}
+      initial="hidden"
+      animate="visible"
       transition={{
         delay: index * 0.25,
         ease: "easeInOut",
@@ -87,9 +114,11 @@ function AnimeCard({ anime, index }: Prop) {
             <p className="text-base font-bold text-[#FFAD49]">{anime.score}</p>
           </div>
           <div>
-            <button 
+            <button
               onClick={toggleClick}
-              className={`${isClicked ? 'bg-green-500' : 'bg-yellow-500'} py-1 px-2 rounded-sm text-white font-bold rounded-md`}
+              className={`${
+                isClicked ? "bg-green-500" : "bg-yellow-500"
+              } py-1 px-2 rounded-sm text-white font-bold rounded-md`}
             >
               {isClicked ? "Watched" : "Watch"}
             </button>

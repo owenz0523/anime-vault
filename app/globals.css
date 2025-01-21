@@ -16,3 +16,45 @@ body {
 :root {
   color-scheme: dark;
 }
+
+.buttons {
+  display: flex;
+  gap: 15px;
+  padding-right: 5px;
+  justify-content: space-between;
+  margin: 2px;
+}
+
+.sign-in-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  border: 2px solid white;
+  font-size: 16px;
+  width: 100px;
+  height: 42.2px;
+  cursor: pointer;
+  outline: none;
+  border-radius: 10%;
+  margin-left: 10px;
+}
+
+.sign-in-button:hover {
+  background: linear-gradient(92deg, #ff5956 2.87%, #ee1e38 96.18%);
+}
+
+.user-display {
+  background-color: transparent;
+  font-size: 16px;
+  flex: 0 0 1;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.buttons img {
+  height: 42.2px;
+  width: 42.2px;
+  border-radius: 10%;
+}
